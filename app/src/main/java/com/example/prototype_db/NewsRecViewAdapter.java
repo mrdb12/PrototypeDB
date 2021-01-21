@@ -22,9 +22,13 @@ public class NewsRecViewAdapter extends RecyclerView.Adapter<NewsRecViewAdapter.
 
 
     private ArrayList<News>  news = new ArrayList<>();
-    private MainActivity mainActivity;
+    MainActivity mainActivity;
     private Context context;
-    public NewsRecViewAdapter(Context context) {this.context = context;}
+    public NewsRecViewAdapter(Context context, MainActivity mainActivity) {
+        this.context = context;
+        this.mainActivity = mainActivity;
+
+    }
 
     @NonNull
     @Override
@@ -41,7 +45,7 @@ public class NewsRecViewAdapter extends RecyclerView.Adapter<NewsRecViewAdapter.
         holder.parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "Test", Toast.LENGTH_SHORT).show();
+                mainActivity.switchActivity(NewsActivity.class, position);
             }
         });
 

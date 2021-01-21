@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView topicsRecView;
+    private ArrayList<News> news = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,17 +27,26 @@ public class MainActivity extends AppCompatActivity {
 
         topicsRecView = findViewById(R.id.topicsRecView);
 
-        ArrayList<News> news = new ArrayList<>();
         news.add(new News("Das HLG während Corona", "abcde", "https://www.hlg-hamburg.de/wp-content/uploads/2014/08/IMG_6112.HLG_.jpg"));
         news.add(new News("Die Arbeit mit Moodel", "cdefg Moodel dies das", "https://i.ibb.co/F7d5cmc/moodle.jpg"));
         news.add(new News("UNESCO", "unesco schule auf ehre", "https://www.hlg-hamburg.de/wp-content/uploads/2014/08/DSCI02952-342x266.jpg"));
 
-        NewsRecViewAdapter adapter = new NewsRecViewAdapter(this);
+        NewsRecViewAdapter adapter = new NewsRecViewAdapter(this, this);
         adapter.setNews(news);
 
         topicsRecView.setAdapter(adapter);
         topicsRecView.setLayoutManager(new LinearLayoutManager(this));
 
+    }
+
+    public void switchActivity(Class<?> cls, int position){
+        Intent intent = new Intent(MainActivity.this,cls);  // (mainActivity, menu1.class);
+        String headline = news.get(position).getTopic();
+        intent.putExtra("headline", headline);
+
+        String text = news.get(position).getText();
+        intent.putExtra("text", text);
+        startActivity(intent);
     }
 
 }
