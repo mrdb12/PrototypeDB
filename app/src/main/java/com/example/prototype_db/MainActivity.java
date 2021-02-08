@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
+        System.out.println("test");
         topicsRecView = findViewById(R.id.topicsRecView);
 
         news.add(new News("Das HLG während Corona","ababababababababababababababababababababababababababababababababababababababababababbababababababababababababababaababababababababa", "https://www.hlg-hamburg.de/wp-content/uploads/2014/08/IMG_6112.HLG_.jpg"));
